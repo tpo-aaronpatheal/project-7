@@ -1,8 +1,14 @@
 import React from 'react';
+import Nav from './components/Nav';
+
+
 
 const App = () => {
-  return ( 
+  return (
+    <>
+    <Nav />
     <h1>Hello World</h1>
+    </>
    );
 }
  
