@@ -1,7 +1,7 @@
 import React from 'react';
 import Nav from './components/Nav';
 import SearchForm from './components/SearchForm';
-
+import PhotoContainer from './components/PhotoContainer';
 
 
 const App = () => {
@@ -9,7 +9,7 @@ const App = () => {
     <>
     <SearchForm />
     <Nav />
-    <h1>Hello World</h1>
+    <PhotoContainer />
     </>
    );
 }
