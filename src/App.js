@@ -7,8 +7,8 @@ import SearchForm from './components/SearchForm';
 const App = () => {
   return (
     <>
-    <Nav />
     <SearchForm />
+    <Nav />
     <h1>Hello World</h1>
     </>
    );
