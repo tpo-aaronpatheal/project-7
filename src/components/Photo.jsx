@@ -1,11 +1,11 @@
 import React from 'react';
 
 const Photo = (props) => {
-    const { source, alt } = props;
+    const { src, alt } = props;
     
     return ( 
         <li>
-        <img src={source} alt={alt} />
+        <img src={src} alt={alt} />
         </li>
      );
 }
