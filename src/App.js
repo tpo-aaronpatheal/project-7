@@ -3,7 +3,7 @@ import React from 'react';
 import { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Form from './components/Form';
-import Navs from './components/Navs';
+import Nav from './components/Nav';
 import PhotoList from './components/PhotoList';
 import NotFound from './components/NotFound';
 import apiKey from './config';
@@ -118,7 +118,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="container">
           <Form searchFunction={this.searchFlikr} />
-          <Navs />
+          <Nav />
           {
           (this.state.loading) 
             ? <p>Loading...</p>
