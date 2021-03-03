@@ -9,8 +9,15 @@ export const SearchProvider = (props) => {
         setSearchInput(e.target.value);
     }
 
+    const [ activeKeyword, setActiveKeyword ] = useState();
+
+    const updateActiveKeyword = (text) => {
+        setActiveKeyword(text);
+        console.log(activeKeyword)
+    }
+
     return(
-        <SearchContext.Provider value={{ searchInput, onChange }}>
+        <SearchContext.Provider value={{ searchInput, onChange, activeKeyword, updateActiveKeyword }}>
             {props.children}
         </SearchContext.Provider>
     )
