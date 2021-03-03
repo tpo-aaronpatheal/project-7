@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-// import { Router } from 'react-router-dom';
 
 
 const SearchForm = () => {
     const [searchInput, setSearchInput] = useState();
-    //const textInput = useRef(null);
 
     const onClick = (e) => {
         e.preventDefault();
