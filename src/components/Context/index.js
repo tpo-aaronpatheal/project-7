@@ -1,25 +1,19 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-const GalleryContext = React.createContext();
+const SearchContext = React.createContext();
 
-export class Provider extends Component {
-    
-    state = {
-        searchInput: 'Dinos'
-    };
+export const SearchProvider = (props) => {
+    const [ searchInput, setSearchInput ] = useState();
 
-    render() {
-        return(
-        <GalleryContext.Provider value={{
-            searchInput: this.state.searchInput,
-            actions: {
-                updateSearchValue: this.updateSearchValue
-            }
-        }}>
-            { this.props.children }
-        </GalleryContext.Provider>
-        );
+    const onChange = e => {
+        setSearchInput(e.target.value);
     }
+
+    return(
+        <SearchContext.Provider value={{ searchInput, onChange }}>
+            {props.children}
+        </SearchContext.Provider>
+    )
 }
- 
-export const Consumer = GalleryContext.Consumer;
+
+export default SearchContext;
