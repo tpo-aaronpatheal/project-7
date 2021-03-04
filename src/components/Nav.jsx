@@ -13,6 +13,7 @@ const Nav = () => {
           <li><NavLink to="/dinos" onClick={e => onClick(e, 'dinos')}>Dinos</NavLink></li>
         </ul>
       </nav>
+      
     );
 }
  

@@ -6,18 +6,24 @@ require("dotenv").config();
 const SearchContext = React.createContext();
 
 export const SearchProvider = (props) => {
-    const [ activeKeyword, setActiveKeyword ] = useState('chair');
+    const [ activeKeyword, setActiveKeyword ] = useState('cats');
     const [ inputValue, setInputValue ] = useState();
     const [ photoData, setPhotoData ] = useState();
+    const [ previousKeyword, setPreviousKeyword ] = useState();
 
     const onChange = e => {
         setInputValue(e.target.value);
     }
 
     const onClick = (e, text) => {
+        priorKeyword();
         setActiveKeyword(text);
         e.preventDefault();
     }
+
+    let priorKeyword = () => {
+        setPreviousKeyword(activeKeyword);
+        }
 
     const dataFetch = () => {
         const apiKey = process.env.REACT_APP_FLICKR_KEY;
@@ -28,7 +34,7 @@ export const SearchProvider = (props) => {
     }
 
     return(
-        <SearchContext.Provider value={{ activeKeyword, inputValue, onChange, onClick, dataFetch, photoData }}>
+        <SearchContext.Provider value={{ activeKeyword, inputValue, onChange, onClick, dataFetch, photoData, previousKeyword }}>
             {props.children}
         </SearchContext.Provider>
     )
