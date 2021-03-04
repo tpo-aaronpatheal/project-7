@@ -99,6 +99,7 @@ class App extends Component {
     fetch(url)
       .then((response) => response.json())
       .then((responseData) => {
+        console.log(responseData)
         this.setState(() => {
           return {
             Photos: responseData.photos.photo,
