@@ -6,9 +6,9 @@ import Form from './components/Form';
 import Nav from './components/Nav';
 import PhotoList from './components/PhotoList';
 import NotFound from './components/NotFound';
-import apiKey from './config';
+import apiKey from './config2';
 
-
+//console.log(apiKey);
 // strings for the default navs//
 const defaultLoads = ['cars', 'helicopters', 'airplanes'];
 class App extends Component {
@@ -39,7 +39,7 @@ class App extends Component {
     defaultLoads.forEach((vehicle, index) => {
       axios
         .get(
-          `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&text=${vehicle}&per_page=24&format=json&nojsoncallback=1`
+          `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey.apiKey}&text=${vehicle}&per_page=24&format=json&nojsoncallback=1`
         )
         .then((response) => {
           switch (vehicle) {
@@ -95,7 +95,7 @@ class App extends Component {
   // takes a string and searches flikr for up to 24 images//
   searchFlikr = (search) => {
     this.setState({ loading: true });
-    let url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&text=${search}&per_page=24&format=json&nojsoncallback=1`;
+    let url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey.apiKey}&text=${search}&per_page=24&format=json&nojsoncallback=1`;
     fetch(url)
       .then((response) => response.json())
       .then((responseData) => {
@@ -113,7 +113,7 @@ class App extends Component {
       });
   };
 
-  // all routes below. while queries are in progress, loading will be displayed. If no route is available, 404 will be displayed instead//
+  // Routes: While queries are in progress, loading will be displayed. If no route is available, 404 will be displayed instead//
   render() {
     return (
       <BrowserRouter>
