@@ -3,21 +3,18 @@ import React, { useState } from 'react';
 const SearchContext = React.createContext();
 
 export const SearchProvider = (props) => {
-    const [ searchInput, setSearchInput ] = useState();
-
-    const onChange = e => {
-        setSearchInput(e.target.value);
-    }
-
     const [ activeKeyword, setActiveKeyword ] = useState();
 
-    const updateActiveKeyword = (text) => {
+    const onChange = e => {
+        setActiveKeyword(e.target.value);
+    }
+
+    const onClick = (text) => {
         setActiveKeyword(text);
-        console.log(activeKeyword)
     }
 
     return(
-        <SearchContext.Provider value={{ searchInput, onChange, activeKeyword, updateActiveKeyword }}>
+        <SearchContext.Provider value={{ activeKeyword, onChange, onClick }}>
             {props.children}
         </SearchContext.Provider>
     )
