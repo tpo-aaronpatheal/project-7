@@ -2,25 +2,24 @@ import React, { useEffect, useContext } from 'react';
 import NotFound from './NotFound';
 import Photo from './Photo';
 import SearchContext from './Context';
-const data = require('../data.json');
+let data = require('../data.json');
 
 const PhotoContainer = () => {
 
-    const { dataFetch, photoData }  = useContext(SearchContext);
+    const { dataFetch, photoData, activeKeyword }  = useContext(SearchContext);
 
     useEffect( () => {
         dataFetch();
-        console.log(photoData.photos.photo[0]);
-    })
+    }, [activeKeyword])
 
-    const urlArr = data.map(item => {
+    let urlArr = (photoData || data).map(item => {
         const { farm, server, id, secret, title } = item;
         const url = `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`;
         return {
             id,
             src: url,
             alt: title
-        };
+        }
     })
 
     return ( 

@@ -8,9 +8,9 @@ const Nav = () => {
     return ( 
         <nav className="main-nav">
         <ul>
-          <li><NavLink to='/cats' onClick={() => onClick('cats')}>Cats</NavLink></li>
-          <li><NavLink to='/dogs' onClick={() => onClick('dogs')}>Dogs</NavLink></li>
-          <li><NavLink to="/dinos" onClick={() => onClick('dinos')}>Dinos</NavLink></li>
+          <li><NavLink to='/cats' onClick={e => onClick(e, 'cats')}>Cats</NavLink></li>
+          <li><NavLink to='/dogs' onClick={e => onClick(e, 'dogs')}>Dogs</NavLink></li>
+          <li><NavLink to="/dinos" onClick={e => onClick(e, 'dinos')}>Dinos</NavLink></li>
         </ul>
       </nav>
     );
