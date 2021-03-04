@@ -2,7 +2,9 @@ import React, { useContext } from 'react';
 import SearchContext from './Context';
 
 const SearchForm = () => {
-    const { activeKeyword, onChange,  } = useContext(SearchContext);
+    const { activeKeyword, onChange, dataFetch } = useContext(SearchContext);
+
+    dataFetch(activeKeyword);
     
     return(
         <form className="search-form">
