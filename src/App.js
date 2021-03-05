@@ -13,13 +13,12 @@ const App = ({ location }) => {
         <SearchForm />
         <Nav />
         <Switch>
-        <Route exact path={`/`}>
-            <h1>some home page or whatever</h1>
-        </Route>
-        <Route path={pathname}>
-          {console.log(location)}
-          <PhotoContainer path={path}/>
-        </Route>
+          <Route exact path={`/`}>
+              <h1>some home page or whatever</h1>
+          </Route>
+          <Route path={pathname}>
+            <PhotoContainer path={path}/>
+          </Route>
         </Switch>
       </>
   );
