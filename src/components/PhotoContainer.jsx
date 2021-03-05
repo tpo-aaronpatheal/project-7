@@ -4,13 +4,14 @@ import Photo from './Photo';
 import SearchContext from './Context';
 let data = require('../data.json');
 
-const PhotoContainer = () => {
-
-    const { dataFetch, photoData, activeKeyword }  = useContext(SearchContext);
+const PhotoContainer = (props) => {
+    const { fetchData, photoData }  = useContext(SearchContext);
+    const { path } = props;
 
     useEffect( () => {
-        dataFetch();
-    }, [activeKeyword])
+        fetchData(path);
+        // eslint-disable-next-line
+    }, [path])
 
     let urlArr = (photoData || data).map(item => {
         const { farm, server, id, secret, title } = item;

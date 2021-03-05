@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 require("dotenv").config();
@@ -6,35 +7,32 @@ require("dotenv").config();
 const SearchContext = React.createContext();
 
 export const SearchProvider = (props) => {
-    const [ activeKeyword, setActiveKeyword ] = useState('cats');
-    const [ inputValue, setInputValue ] = useState();
+
+    const [ inputValue, setInputValue ] = useState('');
     const [ photoData, setPhotoData ] = useState();
-    const [ previousKeyword, setPreviousKeyword ] = useState();
+
+    let history = useHistory();
 
     const onChange = e => {
+        e.preventDefault()
         setInputValue(e.target.value);
     }
 
-    const onClick = (e, text) => {
-        priorKeyword();
-        setActiveKeyword(text);
-        e.preventDefault();
+    const onClick = (text) => {
+        history.push(text);
+        history.replace(text);
     }
 
-    let priorKeyword = () => {
-        setPreviousKeyword(activeKeyword);
-        }
-
-    const dataFetch = () => {
+    const fetchData = (text) => {
         const apiKey = process.env.REACT_APP_FLICKR_KEY;
-        let url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${activeKeyword}&per_page=24&page=1&format=json&nojsoncallback=1`
+        let url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${text}&per_page=24&page=1&format=json&nojsoncallback=1`
         
         axios(url)
             .then(response => setPhotoData(response.data.photos.photo))
     }
 
     return(
-        <SearchContext.Provider value={{ activeKeyword, inputValue, onChange, onClick, dataFetch, photoData, previousKeyword }}>
+        <SearchContext.Provider value={{ inputValue, onChange, onClick, fetchData, photoData }}>
             {props.children}
         </SearchContext.Provider>
     )

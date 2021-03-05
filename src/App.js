@@ -1,26 +1,28 @@
-import React, { useContext } from 'react';
-import { Route, Switch, Redirect } from "react-router-dom";
+import React from 'react';
+import { Route, Switch, withRouter } from "react-router-dom";
 import Nav from './components/Nav';
 import SearchForm from './components/SearchForm';
 import PhotoContainer from './components/PhotoContainer';
-import SearchContext from './components/Context';
 
-const App = () => {
-  const { activeKeyword, previousKeyword } = useContext(SearchContext);
+const App = ({ location }) => {
+  const { pathname } = location;
+  let path = pathname.substring(1);
 
   return (
       <>
         <SearchForm />
         <Nav />
         <Switch>
-          <Route exact path={'/'} render={() => <Redirect to={`/${activeKeyword}`}/>} />
-          <Route exact path={`/${previousKeyword}`} render={() => <Redirect to={`/${activeKeyword}`}/>} />
-          <Route>
-            <PhotoContainer />
-          </Route>
+        <Route exact path={`/`}>
+            <h1>some home page or whatever</h1>
+        </Route>
+        <Route path={pathname}>
+          {console.log(location)}
+          <PhotoContainer path={path}/>
+        </Route>
         </Switch>
       </>
   );
 }
 
-export default App;
+export default withRouter(App);
