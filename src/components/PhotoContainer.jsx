@@ -1,8 +1,8 @@
 import React, { useEffect, useContext } from 'react';
-import NotFound from './NotFound';
+import Loading from './Loading';
 import Photo from './Photo';
 import SearchContext from './Context';
-let data = require('../data.json');
+
 
 const PhotoContainer = (props) => {
     const { fetchData, photoData }  = useContext(SearchContext);
@@ -13,7 +13,9 @@ const PhotoContainer = (props) => {
         // eslint-disable-next-line
     }, [path])
 
-    let urlArr = (photoData || data).map(item => {
+    let data = photoData ? photoData : [];
+
+    let urlArr = data.map(item => {
         const { farm, server, id, secret, title } = item;
         const url = `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`;
         return {
@@ -25,11 +27,11 @@ const PhotoContainer = (props) => {
 
     return ( 
         <div className="photo-container">
-        <h2>Results</h2>
+            { urlArr.length > 0 ? <h2>Results</h2> : null}
         <ul>
             { urlArr.length > 0 ? urlArr.map(photo => {
                 return <Photo key={photo.id} src={photo.src} alt={photo.alt} />
-            }) : <NotFound /> }
+            }) : <Loading /> }
         </ul>
       </div>
      );
