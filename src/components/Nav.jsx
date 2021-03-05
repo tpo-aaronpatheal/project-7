@@ -3,14 +3,14 @@ import { NavLink } from 'react-router-dom';
 import SearchContext from './Context';
 
 const Nav = () => {
-  const { onClick } = useContext(SearchContext);
+  const { updatePath } = useContext(SearchContext);
 
     return ( 
         <nav className="main-nav">
         <ul>
-          <li><NavLink to='/cats' onClick={() => onClick('cats')}>Cats</NavLink></li>
-          <li><NavLink to='/dogs' onClick={() => onClick('dogs')}>Dogs</NavLink></li>
-          <li><NavLink to="/dinos" onClick={() => onClick('dinos')}>Dinos</NavLink></li>
+          <li><NavLink to='/cats' onClick={() => updatePath('cats')}>Cats</NavLink></li>
+          <li><NavLink to='/dogs' onClick={() => updatePath('dogs')}>Dogs</NavLink></li>
+          <li><NavLink to="/dinos" onClick={() => updatePath('dinos')}>Dinos</NavLink></li>
         </ul>
       </nav>
       

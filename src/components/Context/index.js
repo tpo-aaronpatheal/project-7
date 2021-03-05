@@ -19,7 +19,7 @@ export const SearchProvider = (props) => {
         setInputValue(e.target.value);
     }
 
-    const onClick = (text) => {
+    const updatePath = (text) => {
         history.push(text);
         history.replace(text);
     }
@@ -36,7 +36,7 @@ export const SearchProvider = (props) => {
     }
 
     return(
-        <SearchContext.Provider value={{ inputValue, onChange, onClick, fetchData, photoData, setPhotoData, noResults }}>
+        <SearchContext.Provider value={{ inputValue, onChange, updatePath, fetchData, photoData, setPhotoData, noResults }}>
             {props.children}
         </SearchContext.Provider>
     )
