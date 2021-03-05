@@ -8,16 +8,16 @@ import PhotoList from './components/PhotoList';
 import NotFound from './components/NotFound';
 import apiKey from './config2';
 
-//console.log(apiKey);
+
 // strings for the default navs//
-const defaultLoads = ['cars', 'helicopters', 'airplanes'];
+const defaultLoads = ['godzilla', 'helicopters', 'airplanes'];
 class App extends Component {
   constructor() {
     super();
     this.state = {
       loading: false,
       Photos: [],
-      cars: [],
+      godzilla: [],
       helicopters: [],
       airplanes: [],
       homePhotos: [],
@@ -43,8 +43,8 @@ class App extends Component {
         )
         .then((response) => {
           switch (vehicle) {
-            case 'cars':
-              this.setState({ cars: response.data.photos.photo });
+            case 'godzilla':
+              this.setState({ godzilla: response.data.photos.photo });
               homePhotosArray.splice(0,0,response.data.photos.photo[0])
               break;
             case 'helicopters':
@@ -143,9 +143,9 @@ class App extends Component {
               />
               <Route
                 exact
-                path="/cars"
+                path="/godzilla"
                 render={() => (
-                  <PhotoList data={this.state.cars} search={'cars'} />
+                  <PhotoList data={this.state.godzilla} search={'godzilla'} />
                 )}
               />
               <Route

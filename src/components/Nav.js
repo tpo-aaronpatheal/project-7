@@ -7,7 +7,7 @@ const Navs = () => {
     <nav className="main-nav">
       <ul>
         <li>
-          <NavLink to="/cars">Cars</NavLink>
+          <NavLink to="/godzilla">Godzilla</NavLink>
         </li>
         <li>
           <NavLink to="/helicopters">Helicopters</NavLink>
