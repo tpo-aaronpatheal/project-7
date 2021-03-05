@@ -9,7 +9,8 @@ const SearchContext = React.createContext();
 export const SearchProvider = (props) => {
 
     const [ inputValue, setInputValue ] = useState('');
-    const [ photoData, setPhotoData ] = useState();
+    const [ photoData, setPhotoData ] = useState([]);
+    const [ noResults, setNoResults] = useState();
 
     let history = useHistory();
 
@@ -23,16 +24,19 @@ export const SearchProvider = (props) => {
         history.replace(text);
     }
 
-    const fetchData = (text) => {
+    async function fetchData(text) {
+        
         const apiKey = process.env.REACT_APP_FLICKR_KEY;
         let url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${text}&per_page=24&page=1&format=json&nojsoncallback=1`
-        
-        axios(url)
-            .then(response => setPhotoData(response.data.photos.photo))
+    
+        const response = await axios.get(url);
+
+        await response.data.photos.photo.length === 0 || response.data.photos.photo.length === undefined ? setNoResults(true) : setNoResults(false);
+        setPhotoData(response.data.photos.photo);            
     }
 
     return(
-        <SearchContext.Provider value={{ inputValue, onChange, onClick, fetchData, photoData, setPhotoData }}>
+        <SearchContext.Provider value={{ inputValue, onChange, onClick, fetchData, photoData, setPhotoData, noResults }}>
             {props.children}
         </SearchContext.Provider>
     )

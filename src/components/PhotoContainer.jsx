@@ -1,11 +1,12 @@
 import React, { useEffect, useContext } from 'react';
 import Loading from './Loading';
 import Photo from './Photo';
+import NotFound from './NotFound'
 import SearchContext from './Context';
 
 
 const PhotoContainer = (props) => {
-    const { fetchData, photoData, setPhotoData }  = useContext(SearchContext);
+    const { fetchData, photoData, setPhotoData, noResults }  = useContext(SearchContext);
     const { path } = props;
 
     useEffect( () => {
@@ -13,6 +14,7 @@ const PhotoContainer = (props) => {
         fetchData(path);
         // eslint-disable-next-line
     }, [path])
+
 
     let data = photoData ? photoData : [];
 
@@ -26,13 +28,19 @@ const PhotoContainer = (props) => {
         }
     })
 
+
+
     return ( 
         <div className="photo-container">
-            { urlArr.length > 0 ? <h2>Results for "{path}"</h2> : null}
+            { urlArr.length > 0 && noResults === false ? <h2>Results for "{path}"</h2> : null}
         <ul>
-            { urlArr.length > 0 ? urlArr.map(photo => {
-                return <Photo key={photo.id} src={photo.src} alt={photo.alt} />
-            }) : <Loading /> }
+            { urlArr.length === 0  && noResults === false ? <Loading /> : null}
+            
+            { urlArr.length > 0 && noResults === false ? urlArr.map(photo => {
+                return <Photo key={photo.id} src={photo.src} alt={photo.alt} />})  : null
+            }
+
+            { noResults ? <NotFound /> : null }
         </ul>
       </div>
      );
