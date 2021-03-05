@@ -5,10 +5,11 @@ import SearchContext from './Context';
 
 
 const PhotoContainer = (props) => {
-    const { fetchData, photoData }  = useContext(SearchContext);
+    const { fetchData, photoData, setPhotoData }  = useContext(SearchContext);
     const { path } = props;
 
     useEffect( () => {
+        setPhotoData([]);
         fetchData(path);
         // eslint-disable-next-line
     }, [path])
@@ -27,7 +28,7 @@ const PhotoContainer = (props) => {
 
     return ( 
         <div className="photo-container">
-            { urlArr.length > 0 ? <h2>Results</h2> : null}
+            { urlArr.length > 0 ? <h2>Results for "{path}"</h2> : null}
         <ul>
             { urlArr.length > 0 ? urlArr.map(photo => {
                 return <Photo key={photo.id} src={photo.src} alt={photo.alt} />

@@ -32,7 +32,7 @@ export const SearchProvider = (props) => {
     }
 
     return(
-        <SearchContext.Provider value={{ inputValue, onChange, onClick, fetchData, photoData }}>
+        <SearchContext.Provider value={{ inputValue, onChange, onClick, fetchData, photoData, setPhotoData }}>
             {props.children}
         </SearchContext.Provider>
     )
