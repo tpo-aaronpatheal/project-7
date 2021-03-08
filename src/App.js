@@ -14,8 +14,8 @@ const App = ({ location }) => {
     document.title = title;
   },[path])
 
-  if (path !== 'error/404') {
   return (
+  path !== 'error/404' ?
       <>
         <SearchForm />
         <Nav />
@@ -28,9 +28,7 @@ const App = ({ location }) => {
           </Route>
         </Switch>
       </>
-  );
-  } else {
-    return (
+  :
     <>
     <SearchForm />
     <Nav />
@@ -38,7 +36,7 @@ const App = ({ location }) => {
       <h1>Oops 404</h1>
     </Route>
   </>
-  );}
+  )
 }
 
 export default withRouter(App);
