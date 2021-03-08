@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
+//Required API key from the .env file. 
 require("dotenv").config();
 
 const SearchContext = React.createContext();
 
+//This function creates the context provider to establish and export state. 
 export const SearchProvider = (props) => {
 
     const [ inputValue, setInputValue ] = useState('');
@@ -30,7 +32,7 @@ export const SearchProvider = (props) => {
         let url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${text}&per_page=24&page=1&format=json&nojsoncallback=1`
     
         const response = await axios.get(url);
-
+    //Awaits response and sets no results state based upon results received. 
         await response.data.photos.photo.length === 0 || response.data.photos.photo.length === undefined ? setNoResults(true) : setNoResults(false);
         setPhotoData(response.data.photos.photo);            
     }

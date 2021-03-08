@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import SearchContext from './Context';
 
+//Navigates to page and updates path based upon click. 
 const Nav = () => {
   const { updatePath } = useContext(SearchContext);
 

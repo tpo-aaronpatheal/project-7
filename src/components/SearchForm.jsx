@@ -1,3 +1,4 @@
+//Search form dynamically updates the path and fetches data based upon the user's input. 
 import React, { useContext } from 'react';
 import SearchContext from './Context';
 

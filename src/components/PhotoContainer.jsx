@@ -9,6 +9,7 @@ const PhotoContainer = (props) => {
     const { fetchData, photoData, setPhotoData, noResults }  = useContext(SearchContext);
     const { path } = props;
 
+//Resets photoData(for loading purposes) to an empty array and fetches new data based upon path when path is updated. 
     useEffect( () => {
         setPhotoData([]);
         fetchData(path);
@@ -29,7 +30,7 @@ const PhotoContainer = (props) => {
     })
 
 
-
+//If there is photoData, pass the photoData to photo component as props otherwise display not found. Also displays loading page in between renders. 
     return ( 
         <div className="photo-container">
             { urlArr.length > 0 && noResults === false ? <h2>Results for "{path}"</h2> : null}
