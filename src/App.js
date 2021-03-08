@@ -3,6 +3,7 @@ import { Route, Switch, withRouter } from "react-router-dom";
 import Nav from './components/Nav';
 import SearchForm from './components/SearchForm';
 import PhotoContainer from './components/PhotoContainer';
+import Error from './components/Error';
 
 const App = ({ location }) => {
   const { pathname } = location;
@@ -33,7 +34,7 @@ const App = ({ location }) => {
     <SearchForm />
     <Nav />
     <Route exact path={`/error/404`}>
-      <h1>Oops 404</h1>
+      <Error />
     </Route>
   </>
   )
