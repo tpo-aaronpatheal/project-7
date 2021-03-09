@@ -4,6 +4,5 @@ In this project, we used the React library to create an image gallery app. We ut
 
 Instructions regarding API key and set up-
 
-1-Create a .env file in root
-2-In .env file, input API key as "REACT_APP_FLICKR_KEY=(your API)"
-3-Save .env
+First you will need to create a .env file in root. Then in the .env file, input your API key as "REACT_APP_FLICKR_KEY=(your API)". Lastly, you will want to save your .env file. 
+
